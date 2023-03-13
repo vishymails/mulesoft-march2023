@@ -1,0 +1,46 @@
+#%RAML 1.0
+title: day1
+
+
+
+/search :
+  get:
+    queryParameters :
+      keyword :
+        description: this is the query param which the request is accepted 
+        type: string
+        minLength: 3
+        maxLength: 10
+    responses :
+      200 :
+        body:
+          application/json:
+            example : !include examples/searchExample.raml
+              
+  
+/news :
+  post :
+    queryParameters:
+      country : 
+        required: false
+    
+    body:
+      application/json:
+        properties:
+          username :
+            required : true
+            minLength: 5
+            maxLength: 10
+          password :
+            required: true
+            minLength: 6
+            maxLength: 10
+
+    responses :
+      201 :
+        body:
+          application/json:
+            example : !include examples/searchExample.raml
+
+
+        
