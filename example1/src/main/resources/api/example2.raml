@@ -1,0 +1,13 @@
+#%RAML 1.0
+title: example2
+
+uses :
+  types-lib : models/types.lib.raml
+
+/person :
+  get :
+    responses :
+      200 :
+        body :
+          application/json :
+            type : types-lib.Person

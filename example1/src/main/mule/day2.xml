@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="day2Flow" doc:id="aa2b3471-27c0-4d1e-90fd-7177533b1b91" >
+		<http:listener doc:name="Listener" doc:id="65d6c703-00c1-4014-9395-aa1c28aee88a" config-ref="HTTP_Listener_config" path="/day2"/>
+		<logger level="INFO" doc:name="Logger" doc:id="fa1fe632-9efe-467f-b7fc-1e5eae545996" message="#[attributes.requestPath]"/>
+		<set-payload value="Static Data for payload" doc:name="Set Payload" doc:id="28908550-1ccc-4118-98db-fb060dc32216" />
+	</flow>
+	<flow name="day2Flow1" doc:id="214d97b9-c08c-4f9e-a5ec-2c22bc3f7826" >
+		<http:listener doc:name="Listener" doc:id="877f53d1-3e01-4659-b839-ae8fee05d106" config-ref="HTTP_Listener_config" path="/day2-task2"/>
+		<set-payload value="#[output text/plain --- write(attributes.requestPath, 'application/java')]" doc:name="Set Payload" doc:id="378e24ee-4a45-4634-a6a1-8151ada4c4e3" mimeType="text/plain"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a905c341-5a69-44ae-9c05-b522bffe43af" message='#["About to echo $(payload)"]'/>
+	</flow>
+</mule>

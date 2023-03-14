@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="ad271955-4912-462e-8001-30d5cd2e1e93" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="example1Flow" doc:id="b058e5a9-1305-42b1-8671-c1b515f76800" >
+		<http:listener doc:name="Listener" doc:id="75135b61-4c4b-4c7c-b1c2-41c1f3f320ea" config-ref="HTTP_Listener_config" path="/test"/>
+		<set-payload value='#["Hello CGI Welcome to Mule"]' doc:name="Set Payload" doc:id="c853b584-6c4a-4691-88df-75c760672e1b" />
+	</flow>
+	<flow name="example1Flow1" doc:id="04524635-16ff-4ddf-a28f-4fda5f19e602" >
+		<http:listener doc:name="Listener" doc:id="0438a459-12f8-4269-813e-815c5679fac3" config-ref="HTTP_Listener_config" path="/test2"/>
+		<set-payload value='#["Test2 link - another endpoint"]' doc:name="Set Payload" doc:id="527d8359-6452-4ccd-862a-1c33c8ac1b87" />
+	</flow>
+</mule>
